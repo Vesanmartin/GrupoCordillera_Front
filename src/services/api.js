@@ -4,13 +4,23 @@ const GATEWAY_URL = 'http://localhost:3001';
 
 // Autenticación — va directo al gateway
 export const login = async (email, password) => {
-  const respuesta = await fetch(`${GATEWAY_URL}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
-  if (!respuesta.ok) throw new Error('Credenciales incorrectas');
-  return respuesta.json();
+
+  const response = await fetch(
+    "http://localhost:3001/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    }
+  );
+
+  // IMPORTANTE
+  return await response.json();
 };
 
 // Obtener KPIs desde el BFF
