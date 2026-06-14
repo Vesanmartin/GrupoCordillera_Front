@@ -42,7 +42,7 @@ function Gestion() {
   useEffect(() => {
     const cargar = async () => {
       try {
-        const respuesta = await fetch("http://localhost:3003/api/sucursales");
+        const respuesta = await fetch("http://localhost:3006/api/sucursales");
         const data = await respuesta.json();
         if (Array.isArray(data)) setSucursales(data);
       } catch (err) {
@@ -72,12 +72,15 @@ useEffect(() => {
 
   const crearSucursal = async () => {
     try {
-      await fetch("http://localhost:3003/api/gestion/gestion", {
+      await fetch("http://localhost:3006/api/gestion/gestion", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ ...nueva, estado: "activo" })
       });
       setNueva({ nombre: "", descripcion: "", direccion: "", region: "" });
+      const respuesta = await fetch("http://localhost:3006/api/sucursales");
+      const data = await respuesta.json();
+      if (Array.isArray(data)) setSucursales(data);
     } catch (err) {
       console.error("Error creando sucursal:", err);
     }
@@ -85,7 +88,7 @@ useEffect(() => {
 
   const eliminarSucursal = async (id) => {
     try {
-      await fetch(`http://localhost:3003/api/gestion/gestion/${id}`, {
+      await fetch(`http://localhost:3006/api/gestion/gestion/${id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
