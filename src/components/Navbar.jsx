@@ -44,8 +44,8 @@ function Navbar() {
           </button>
         )}
 
-        {/* SUPERSAYAYIN — ve todos los módulos */}
-        {rol === "supersayayin" && (
+        {/* SUPERSAiYAYIN — ve todos los módulos */}
+        {rol === "supersaiyajin" && (
         <>
           <button onClick={() => navigate("/admin")}
             style={{ background: "transparent", color: "#48cae4", border: "none", cursor: "pointer", fontSize: "16px", fontWeight: "600" }}>
